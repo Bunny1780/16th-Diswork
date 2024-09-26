@@ -207,7 +207,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     # BASE_DIR / "static",
-    os.path.join(BASE_DIR, "staticfiles"),
+    # os.path.join(BASE_DIR, "staticfiles"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # S3
@@ -234,7 +235,7 @@ AUTHENTICATION_BACKENDS = {
 SITE_ID = int(os.getenv("SITE_ID", 1))
 LOGIN_REDIRECT_URL = "/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 ALLOWED_HOSTS = ["*"]
 
