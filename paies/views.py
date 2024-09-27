@@ -116,12 +116,13 @@ def check_order(request, TimeStamp):
 
 @csrf_exempt
 def newebpay_return(request):
-    
+
     if request.method == 'POST':
         enc_data = request.POST.get('TradeInfo')
+        print(f'=====enc_data: {enc_data}=====')
         decrypt = decrypt_aes_cbc(enc_data, HASHKEY, HASHIV)
         decrypt_dict = json.loads(decrypt)
-        print(f'decrypt_dict: {decrypt_dict}')
+        print(f'=====decrypt_dict: {decrypt_dict}=====')
 
         merchant_order = decrypt_dict["Result"]["MerchantOrderNo"]
 
