@@ -150,6 +150,7 @@ CHANNEL_LAYERS = {
 #         "PORT": os.getenv("DB_PORT"),
 #     }
 # }
+
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('JAWSDB_URL')
