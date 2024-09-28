@@ -124,8 +124,8 @@ def check_order(request, TimeStamp):
 @csrf_exempt
 def newebpay_return(request):
     
+    print(f'=====request: {request}=====')
     if request.method == 'POST':
-        print(f'=====request: {request}=====')
         enc_data = request.POST.get('TradeInfo')
         print(f'=====enc_data: {enc_data}=====')
         decrypt = decrypt_aes_cbc(enc_data, HASHKEY, HASHIV)
@@ -153,12 +153,13 @@ def newebpay_return(request):
     else:
         return HttpResponse("Method Not Allowed", status=405)
 
-@csrf_exempt
-def newebpay_notify(request):
-    if request.method == 'POST':
-        return HttpResponse('Notify')
-    else:
-        return HttpResponse("Method Not Allowed", status=405)
+# @csrf_exempt
+# def newebpay_notify(request):
+#     if request.method == 'POST':
+#         return HttpResponse('Notify')
+#     else:
+#         return HttpResponse("Method Not Allowed", status=405)
+
 
 def checkout_success(request):
     return render(request, 'paies/success.html', {'title': 'Checkout Success'})
