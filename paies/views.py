@@ -30,8 +30,8 @@ def create_order(request):
         timestamp = int(timezone.now().timestamp())
         order = {
             'MerchantID': MerchantID,
-            'RespondType': 'String',
-            # 'RespondType': 'JSON',
+            # 'RespondType': 'String',
+            'RespondType': 'JSON',
             'TimeStamp': timestamp,
             'Version': 2.0,
             'Amt': int(100),
@@ -79,6 +79,8 @@ def aes_encrypt(data):
 
 def create_sha_encrypt(edata1):
     hash_string = f"HashKey={HASHKEY}&{edata1}&HashIV={HASHIV}"
+    print(f"====hash_string==== {hash_string}")
+
     sha256_hash = hashlib.sha256(hash_string.encode()).hexdigest()
 
     return sha256_hash.upper()
@@ -104,6 +106,7 @@ def check_order(request, TimeStamp):
     print(f"====data_chain==== {data_chain}")
     
     encrypted_data = aes_encrypt(data_chain)
+    print(f"====encrypted_data==== {encrypted_data}")
 
     sha_encrypt = create_sha_encrypt(encrypted_data)
 
