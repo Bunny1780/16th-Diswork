@@ -166,9 +166,9 @@ def checkout_success(request):
 
 def decrypt_aes_cbc(encrypted_data, key, iv):
     try:
-        key_bytes = key.encode('utf-8')[:32]
+        key_bytes = key.encode('utf-8')
         print(f"=====key_bytes==== {key_bytes}")
-        iv_bytes = iv.encode('utf-8')[:16]
+        iv_bytes = iv.encode('utf-8')
         print(f"=====iv_bytes==== {iv_bytes}")
         encrypted_bytes = bytes.fromhex(encrypted_data)
         print(f"=====encrypted_data==== {encrypted_data}")
