@@ -9,7 +9,7 @@ from django.conf import settings
 from .models import Paies
 import hashlib
 import json
-
+import binascii
 
 MerchantID = settings.ENCRYPTION_KEY['MERCHANT_ID']
 HASHKEY = settings.ENCRYPTION_KEY['HASH_KEY']
@@ -174,8 +174,11 @@ def decrypt_aes_cbc(encrypted_data, key, iv):
         print(f"=====iv_bytes==== {iv_bytes}")
         print(f"IV length: {len(iv_bytes)}")
 
-        encrypted_bytes = bytes.fromhex(encrypted_data)
-        print(f"=====encrypted_data==== {encrypted_data}")
+        encrypted_bytes = binascii.unhexlify(encrypted_data)
+        # encrypted_bytes = bytes.fromhex(encrypted_data)
+        print(f"=====encrypted_bytes==== {encrypted_bytes}")
+        # print(f"=====encrypted_data==== {encrypted_data}")
+
         cipher = Cipher(algorithms.AES(key_bytes), modes.CBC(iv_bytes), backend=default_backend())
         print(f"=====cipher==== {cipher}")
         
