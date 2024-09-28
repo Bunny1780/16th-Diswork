@@ -168,8 +168,12 @@ def decrypt_aes_cbc(encrypted_data, key, iv):
     try:
         key_bytes = key.encode('utf-8')
         print(f"=====key_bytes==== {key_bytes}")
+        print(f"Key length: {len(key_bytes)}")  # 應該是 32
+
         iv_bytes = iv.encode('utf-8')
         print(f"=====iv_bytes==== {iv_bytes}")
+        print(f"IV length: {len(iv_bytes)}")
+
         encrypted_bytes = bytes.fromhex(encrypted_data)
         print(f"=====encrypted_data==== {encrypted_data}")
         cipher = Cipher(algorithms.AES(key_bytes), modes.CBC(iv_bytes), backend=default_backend())
