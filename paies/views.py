@@ -100,6 +100,7 @@ def check_order(request, TimeStamp):
         'NotifyURL': NotifyUrl,
         'CREDIT': 1,
     })
+    print(f"====data_chain==== {data_chain}")
     
     encrypted_data = aes_encrypt(data_chain)
 
@@ -120,6 +121,7 @@ def check_order(request, TimeStamp):
 def newebpay_return(request):
     
     if request.method == 'POST':
+        print(f'=====request: {request}=====')
         enc_data = request.POST.get('TradeInfo')
         print(f'=====enc_data: {enc_data}=====')
         decrypt = decrypt_aes_cbc(enc_data, HASHKEY, HASHIV)
