@@ -192,7 +192,7 @@ def decrypt_aes_cbc(encrypted_data, key, iv):
         # decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
         # print(f"=====decrypted_data==== {decrypted_data}")
 
-        return decrypted_padded_data
+        return plain
         # return decrypted_data.decode('utf-8')
     except Exception as e:
         print(f"解密失敗：{e}")
