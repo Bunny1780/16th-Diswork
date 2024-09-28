@@ -105,6 +105,8 @@ def check_order(request, TimeStamp):
 
     sha_encrypt = create_sha_encrypt(encrypted_data)
 
+    print(f"====sha_encrypt==== {sha_encrypt}")
+
     return render(request, 'paies/check.html', {
         'MerchantID': MerchantID,
         'TradeInfo': encrypted_data,
@@ -116,7 +118,7 @@ def check_order(request, TimeStamp):
 
 @csrf_exempt
 def newebpay_return(request):
-
+    
     if request.method == 'POST':
         enc_data = request.POST.get('TradeInfo')
         print(f'=====enc_data: {enc_data}=====')
@@ -158,20 +160,21 @@ def checkout_success(request):
 def decrypt_aes_cbc(encrypted_data, key, iv):
     try:
         key_bytes = key.encode('utf-8')[:32]
-
+        print(f"=====key_bytes==== {key_bytes}")
         iv_bytes = iv.encode('utf-8')[:16]
-
+        print(f"=====iv_bytes==== {iv_bytes}")
         encrypted_bytes = bytes.fromhex(encrypted_data)
-
+        print(f"=====encrypted_data==== {encrypted_data}")
         cipher = Cipher(algorithms.AES(key_bytes), modes.CBC(iv_bytes), backend=default_backend())
-
+        print(f"=====cipher==== {cipher}")
         decryptor = cipher.decryptor()
-
+        print(f"=====decryptor==== {decryptor}")
         decrypted_padded_data = decryptor.update(encrypted_bytes) + decryptor.finalize()
-        
+        print(f"=====decrypted_padded_data==== {decrypted_padded_data}")
         unpadder = padding.PKCS7(128).unpadder()
-
+        print(f"=====unpadder==== {unpadder}")
         decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+        print(f"=====decrypted_data==== {decrypted_data}")
 
         return decrypted_data.decode('utf-8')
     except Exception as e:
