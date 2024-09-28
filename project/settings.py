@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     f"https://{HOST_NAME}",
+    f"https://www.{HOST_NAME}",
 ]
 
 # Application definition
