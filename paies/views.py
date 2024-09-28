@@ -178,16 +178,27 @@ def decrypt_aes_cbc(encrypted_data, key, iv):
         print(f"=====encrypted_data==== {encrypted_data}")
         cipher = Cipher(algorithms.AES(key_bytes), modes.CBC(iv_bytes), backend=default_backend())
         print(f"=====cipher==== {cipher}")
+        
         decryptor = cipher.decryptor()
         print(f"=====decryptor==== {decryptor}")
+
         decrypted_padded_data = decryptor.update(encrypted_bytes) + decryptor.finalize()
         print(f"=====decrypted_padded_data==== {decrypted_padded_data}")
-        unpadder = padding.PKCS7(128).unpadder()
-        print(f"=====unpadder==== {unpadder}")
-        decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
-        print(f"=====decrypted_data==== {decrypted_data}")
 
-        return decrypted_data.decode('utf-8')
+        plain = strip_padding(decrypted_padded_data)
+        # unpadder = padding.PKCS7(128).unpadder()
+        # print(f"=====unpadder==== {unpadder}")
+
+        # decrypted_data = unpadder.update(decrypted_padded_data) + unpadder.finalize()
+        # print(f"=====decrypted_data==== {decrypted_data}")
+
+        return decrypted_padded_data
+        # return decrypted_data.decode('utf-8')
     except Exception as e:
         print(f"解密失敗：{e}")
         return None
+    
+# 移除填充字節
+def strip_padding(data):
+    slast = data[-1]
+    return data[:-slast].decode("utf-8")
