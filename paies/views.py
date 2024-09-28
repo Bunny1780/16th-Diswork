@@ -63,14 +63,14 @@ def gen_data_chain(order):
 
 
 def aes_encrypt(data):
-    key_bytes = HASHKEY.encode('utf-8')[:32]
-    iv_bytes = HASHIV.encode('utf-8')[:16]
+    key_bytes = HASHKEY.encode('utf-8')
+    iv_bytes = HASHIV.encode('utf-8')
 
     cipher = Cipher(algorithms.AES(key_bytes), modes.CBC(iv_bytes), backend=default_backend())
 
     encryptor = cipher.encryptor()
 
-    padder = padding.PKCS7(128).padder()
+    padder = padding.PKCS7(algorithms.AES.block_size).padder()
     padded_data = padder.update(data.encode('utf-8')) + padder.finalize()
 
     ciphertext = encryptor.update(padded_data) + encryptor.finalize()
