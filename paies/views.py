@@ -30,7 +30,8 @@ def create_order(request):
         timestamp = int(timezone.now().timestamp())
         order = {
             'MerchantID': MerchantID,
-            'RespondType': 'JSON',
+            'RespondType': 'String',
+            # 'RespondType': 'JSON',
             'TimeStamp': timestamp,
             'Version': 2.0,
             'Amt': int(100),
