@@ -165,8 +165,8 @@ ENCRYPTION_KEY = {
     "HASH_KEY": os.getenv("HASHKEY"),
     "HASH_IV": os.getenv("HASHIV"),
     "VERSION": os.getenv("VERSION"),
-    "RETURN_URL": f"https://www.{HOST_NAME}/paies/newebpays_return",
-    "NOTIFY_URL": f"https://www.{HOST_NAME}/paies/newebpays_notify",
+    "RETURN_URL": f"https://{HOST_NAME}/paies/newebpays_return",
+    "NOTIFY_URL": f"https://{HOST_NAME}/paies/newebpays_notify",
     "PAY_GATEWAY": os.getenv("PAYGATEWAY"),
     "RESPOND_TYPE": os.getenv("RESPONDTYPE"),
 }
