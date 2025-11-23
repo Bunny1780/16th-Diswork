@@ -1,7 +1,9 @@
 # 專案名稱
 Diswork
 
-專案網址：https://diswork.cc
+此專案為我在訓練期間與團隊共同開發的作品。<br>
+後續我將其 fork 到個人帳號進行測試，因此 commit 歷史較為雜亂，敬請見諒。<br>
+專案網址：目前已關閉<br>
 介紹影片：https://www.youtube.com/watch?v=jh29GVrw72Q
 
 ## 介紹
